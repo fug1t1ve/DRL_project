@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.by import By
 class Game:
     def __init__(self,custom_config=True):
         chrome_options = Options()
@@ -24,7 +25,7 @@ class Game:
     def restart(self):
         self._driver.execute_script("Runner.instance_.restart()")
     def press_up(self):
-        self._driver.find_element_by_tag_name("body").send_keys(Keys.ARROW_UP)
+        self._driver.find_element(By.TAG_NAME ,"body").send_keys(Keys.ARROW_UP)
     def get_score(self):
         score_array = self._driver.execute_script("return Runner.instance_.distanceMeter.digits")
         score = ''.join(score_array) # the javascript object is of type array with score in the formate[1,0,0] which is 100.
